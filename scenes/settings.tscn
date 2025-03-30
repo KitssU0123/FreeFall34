@@ -39,7 +39,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_4rlqw")
 theme_override_font_sizes/font_size = 48
-text = "遊戲設置"
+text = "Setting"
 horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="UI/Control/VBoxContainer"]
@@ -50,7 +50,7 @@ theme_override_constants/margin_top = 20
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_4rlqw")
 theme_override_font_sizes/font_size = 24
-text = "遊戲音效"
+text = "Sound"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/VBoxContainer"]
 layout_mode = 2
@@ -67,7 +67,7 @@ theme_override_fonts/font = ExtResource("1_4rlqw")
 theme_override_font_sizes/font_size = 24
 toggle_mode = true
 button_pressed = true
-text = "開啟"
+text = "On"
 
 [node name="MarginContainer2" type="MarginContainer" parent="UI/Control/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -77,7 +77,7 @@ theme_override_constants/margin_top = 50
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_4rlqw")
 theme_override_font_sizes/font_size = 24
-text = "返回"
+text = "Back"
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
 z_index = -1

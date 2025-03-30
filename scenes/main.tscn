@@ -51,19 +51,19 @@ theme_override_constants/margin_top = 50
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_4rlqw")
 theme_override_font_sizes/font_size = 24
-text = "開始遊戲"
+text = "Start"
 
 [node name="SettingsButton" type="Button" parent="UI/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_4rlqw")
 theme_override_font_sizes/font_size = 24
-text = "遊戲設置"
+text = "Setting"
 
 [node name="QuitButton" type="Button" parent="UI/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_4rlqw")
 theme_override_font_sizes/font_size = 24
-text = "退出遊戲"
+text = "Quit"
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
 z_index = -1

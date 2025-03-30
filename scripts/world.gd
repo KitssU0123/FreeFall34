@@ -59,6 +59,9 @@ func _ready() -> void:
 	
 	color_rect.color = colors[0]
 	
+	plat1.get_child(0).frame = 1
+	plat2.get_child(0).frame = 1
+	
 	var timer = Timer.new()
 	timer.wait_time = 60.0 / bpm  
 	timer.one_shot = false  
@@ -97,8 +100,8 @@ func _on_timer_timeout():
 		change_level.emit()
 		var tween = create_tween()
 		tween.tween_property(color_rect, "color", colors[( current_level - 1 ) / 3 ], 0.5)
-		plat1.get_child(0).frame = ( current_level - 1 ) / 3
-		plat2.get_child(0).frame = ( current_level - 1 ) / 3
+		plat1.get_child(0).frame = ( current_level - 1 ) / 3 + 1
+		plat2.get_child(0).frame = ( current_level - 1 ) / 3 + 1
 	
 	if score == 34:
 		SceneManager.change_scene("res://scenes/ending.tscn")
