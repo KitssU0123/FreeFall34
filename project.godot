@@ -11,15 +11,24 @@ config_version=5
 [application]
 
 config/name="FreeFall34"
-run/main_scene="uid://c4338yg1gjmud"
+run/main_scene="uid://ylhg8nsfxvh4"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneChanger="*res://scenes/scene_changer.tscn"
 
 [display]
 
 window/size/viewport_width=576
 window/size/viewport_height=324
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[global_group]
+
+plat=""
 
 [input]
 
