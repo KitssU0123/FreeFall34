@@ -1,22 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://6rb8wtbgy8rl"]
 
-[ext_resource type="Script" uid="uid://fjp1rt07bvuv" path="res://scripts/scene_changer.gd" id="1_6xg6a"]
-
-[sub_resource type="Animation" id="Animation_6xg6a"]
-resource_name = "change"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
+[ext_resource type="Script" uid="uid://fjp1rt07bvuv" path="res://scripts/scene_manager.gd" id="1_we8k5"]
 
 [sub_resource type="Animation" id="Animation_r0gix"]
 length = 0.001
@@ -33,14 +17,30 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_6xg6a"]
+resource_name = "change"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xieu0"]
 _data = {
 &"RESET": SubResource("Animation_r0gix"),
 &"change": SubResource("Animation_6xg6a")
 }
 
-[node name="scene_changer" type="CanvasLayer"]
-script = ExtResource("1_6xg6a")
+[node name="scene_manager" type="CanvasLayer"]
+script = ExtResource("1_we8k5")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)

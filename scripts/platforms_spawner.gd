@@ -3,6 +3,7 @@ extends Node
 
 @onready var platforms : PackedScene = preload("res://scenes/platform.tscn")
 @onready var world: Node2D = $".."
+const MAIN = preload("res://scenes/main.tscn")
 
 var levels = [
 	[1, 0, 1, 0, 1, 1, 0], # 第1關
@@ -19,12 +20,13 @@ var levels = [
 	
 	[4, 3, 4, 3, 4, 3, 4], # 第10關
 	[3, 4, 4, 3, 4, 4, 3], # 第11關
+	[4, 4, 4, 3, 4, 4, 4], # 第12關
 ]
 
 var element: int = 0
 var total_width : int = 288
 var platform_count : int =  7
-var level_count : int = 11
+var level_count : int = 12
 var count = 0
 var spacing = total_width / (platform_count+1)
 
@@ -52,25 +54,28 @@ func fall() -> void:
 	for child in get_children():
 		var tween = create_tween()
 		tween.set_ease(Tween.EASE_OUT)
-		tween.tween_property(child, "position", Vector2(child.position.x,300), 0.5)
+		tween.parallel().tween_property(child, "position", Vector2(child.position.x,300), 0.4)
 
 func keep() -> void:
 	for child in get_children():
-		#child.position = Vector2(child.position.x,120)
+		child.position.y = 120
+		child.modulate.a = 0
 		var tween = create_tween()
-		tween.tween_property(child, "position", Vector2(child.position.x,120), 0.2)
+		#tween.tween_property(child, "position", Vector2(child.position.x,120), 0.3)
+		tween.tween_property(child, "modulate:a", 1 , 0.5)
 
 func change() -> void:
 	if count == level_count - 1:
 		print("end game")
-		return
-	print("change level")
+		
+		SceneManager.change_scene("res://scenes/ending.tscn")
+		
+	print("change to level" + str(count+2))
 	for child in get_children():
 		child.queue_free()
 		
 	count += 1
 	element = (count / 3 ) % 4
-	
 	for i in platform_count:
 		var plats = platforms.instantiate()
 		add_child(plats)

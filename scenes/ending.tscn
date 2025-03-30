@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://v6spaby4cb8g"]
+
+[ext_resource type="Script" uid="uid://bfn5higwdhfjc" path="res://scripts/ending.gd" id="1_2x1jc"]
+[ext_resource type="Shader" uid="uid://dpgttqqsvlfo3" path="res://shad/scroll.gdshader" id="1_fyrdv"]
+[ext_resource type="Texture2D" uid="uid://daharcl2qern3" path="res://asset/BW/sea02.png" id="2_2x1jc"]
+[ext_resource type="FontFile" uid="uid://cqpbpdx57k3fh" path="res://asset/fonts/PixelOperator8-Bold.ttf" id="4_2x1jc"]
+[ext_resource type="AudioStream" uid="uid://bcop0736tiwnx" path="res://asset/music/time_for_adventure.mp3" id="5_qa3ag"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfmnx"]
+shader = ExtResource("1_fyrdv")
+
+[node name="Ending" type="Node2D"]
+script = ExtResource("1_2x1jc")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 662.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/ColorRect"]
+modulate = Color(1, 1, 1, 0.388235)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_nfmnx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_2x1jc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreBoard" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/ScoreBoard"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_2x1jc")
+theme_override_font_sizes/font_size = 48
+text = "END GAME"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ScoreBoard"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Score" type="Label" parent="CanvasLayer/ScoreBoard"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_2x1jc")
+theme_override_font_sizes/font_size = 32
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="Death" type="Label" parent="CanvasLayer/ScoreBoard"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_2x1jc")
+theme_override_font_sizes/font_size = 32
+text = "Death: 0"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/ScoreBoard"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="Continue" type="Label" parent="CanvasLayer/ScoreBoard"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_2x1jc")
+theme_override_font_sizes/font_size = 20
+text = "Press Any Key
+To Continue"
+horizontal_alignment = 1
+
+[node name="bgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_qa3ag")
+autoplay = true

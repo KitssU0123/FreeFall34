@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://v6spaby4cb8g"]
+
+[ext_resource type="Script" uid="uid://bfn5higwdhfjc" path="res://scripts/ending.gd" id="1_2x1jc"]
+[ext_resource type="Shader" uid="uid://dpgttqqsvlfo3" path="res://shad/scroll.gdshader" id="1_fyrdv"]
+[ext_resource type="Texture2D" uid="uid://daharcl2qern3" path="res://asset/BW/sea02.png" id="2_2x1jc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfmnx"]
+shader = ExtResource("1_fyrdv")
+
+[node name="Ending" type="Node2D"]
+script = ExtResource("1_2x1jc")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/ColorRect"]
+modulate = Color(1, 1, 1, 0.388235)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_nfmnx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_2x1jc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

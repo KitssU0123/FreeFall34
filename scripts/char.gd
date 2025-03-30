@@ -40,6 +40,7 @@ func check_floor() -> void :
 		if "can_get_score" in area:
 			if area.can_get_score:
 				get_score.emit()
+				area.get_child(0).frame += 1
 				area.can_get_score = false
 	
 	
