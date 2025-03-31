@@ -4,9 +4,10 @@ extends Node2D
 @onready var char_scene : PackedScene = preload("res://scenes/char.tscn")
 @onready var bgm: AudioStreamPlayer2D = $bgm
 @onready var free_fall_timer: Timer = $FreeFallTimer
+@onready var continue_label: Label = $CanvasLayer/ScoreBoard/Continue
 
 var current_index = 0
-
+var cont : bool = false
 
 func _ready() -> void:
 	score.text = "Score : " + str(SceneManager.score)
@@ -17,6 +18,8 @@ func _ready() -> void:
 	else:
 		bgm.playing = false
 		bgm.autoplay = false
+	
+	continue_label.modulate.a = 0
 	
 	var timer = Timer.new()
 	timer.wait_time = 0.2
@@ -37,11 +40,22 @@ func _switch_text() -> void :
 func _on_timer_timeout():
 	var character = char_scene.instantiate()
 	character.position = Vector2(randf_range(0,576),0)
+	character.speed = 0
+	if int (character.position.x) % 2 == 1:
+		character.get_child(0).flip_h = true
 	add_child(character)
 
 func _input(event: InputEvent) -> void:
 
 	if event is InputEventKey and event.pressed:
-		SceneManager.change_scene("res://scenes/main.tscn")
+		if cont == false:
+			create_tween().tween_property(continue_label, "modulate:a", 1.0, 0.2)
+			cont = true
+		else:
+			SceneManager.change_scene("res://scenes/main.tscn")
 	if event is InputEventMouseButton and event.pressed:
-		SceneManager.change_scene("res://scenes/main.tscn")
+		if cont == false:
+			create_tween().tween_property(continue_label, "modulate:a", 1.0, 0.2)
+			cont = true
+		else:
+			SceneManager.change_scene("res://scenes/main.tscn")
