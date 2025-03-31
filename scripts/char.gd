@@ -38,7 +38,7 @@ func _physics_process(delta):
 func check_floor() -> void :
 	var areas = floor_detector.get_overlapping_bodies()
 	for area in areas:
-		if "can_get_score" in area and anim.current_animation == "idle":
+		if "can_get_score" in area:
 			if area.can_get_score:
 				get_score.emit()
 				area.get_child(0).frame += 1
