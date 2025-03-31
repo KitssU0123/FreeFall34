@@ -77,7 +77,6 @@ func _physics_process(delta: float) -> void:
 
 
 func get_score() -> void:
-	 
 	score += 1
 	SceneManager.score = score
 	score_label.text = "Score : " + str(score)
@@ -110,15 +109,19 @@ func _on_timer_timeout():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	
 	death += 1
+	character.speed = 0
 	SceneManager.death = death
 	death_label.text = "Death : " + str(death)
 	#print("death " + str(death))
 	#SceneManager.change_scene("res://scenes/main.tscn")
 	if character.position.x < 576/4 :
 		character.position = Vector2(8,0)
+		character.sprite_2d.flip_h = false
 	else :
 		character.position = Vector2(280,0)
+		character.sprite_2d.flip_h = true
 	character.modulate.a = 0
 	var tween = create_tween()
 	tween.tween_property(character, "modulate:a", 1 , 0.5)
+	
 	add_child(character)

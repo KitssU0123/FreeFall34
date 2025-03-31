@@ -4,4 +4,3 @@ void vertex() {
 	UV.x += TIME * .05;
 	UV.y += TIME * .05;
 }
-

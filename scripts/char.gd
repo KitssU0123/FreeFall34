@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var anim = $AnimationPlayer
 @onready var floor_detector: Area2D = $Floor_detector
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 
 const JUMP_VELOCITY = -100.0
@@ -13,6 +14,11 @@ var score : int = 0
 signal get_score
 
 func _physics_process(delta):
+	if modulate.a != 1 :
+		speed = 0
+	else:
+		speed = 150
+	
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		if velocity.y < 0:
@@ -23,7 +29,7 @@ func _physics_process(delta):
 	var direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * speed
-		$Sprite2D.flip_h = direction < 0
+		sprite_2d.flip_h = direction < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		
@@ -38,7 +44,7 @@ func _physics_process(delta):
 func check_floor() -> void :
 	var areas = floor_detector.get_overlapping_bodies()
 	for area in areas:
-		if "can_get_score" in area and anim.current_animation == "idle":
+		if "can_get_score" in area:
 			if area.can_get_score:
 				get_score.emit()
 				area.get_child(0).frame += 1
