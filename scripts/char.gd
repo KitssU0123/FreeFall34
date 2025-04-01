@@ -10,6 +10,7 @@ const JUMP_VELOCITY = -100.0
 var speed = 150.0
 var gravity : int = 250
 var score : int = 0
+var can_move : bool = true
 
 signal get_score
 
@@ -18,7 +19,8 @@ func _physics_process(delta):
 		speed = 0
 	else:
 		speed = 150
-	
+	if can_move == false:
+		speed = 0
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		if velocity.y < 0:
@@ -27,7 +29,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		anim.play("jump")
 	var direction = Input.get_axis("left", "right")
-	if direction:
+	if direction and can_move:
 		velocity.x = direction * speed
 		sprite_2d.flip_h = direction < 0
 	else:
